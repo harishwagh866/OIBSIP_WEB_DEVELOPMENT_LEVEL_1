@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <style>
+        /* CSS: Styling the UI */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e0f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .converter-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 350px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #006064;
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group {
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus {
+            border-color: #00bcd4;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #00bcd4;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #0097a7;
+        }
+
+        #result {
+            margin-top: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+            min-height: 1.5em; /* Keeps space so layout doesn't jump */
+        }
+
+        .error {
+            color: #d32f2f;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none; /* Hidden by default */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="converter-card">
+        <h2>Temp Converter</h2>
+
+        <!-- 1. Input Field -->
+        <div class="input-group">
+            <label for="tempInput">Enter Temperature</label>
+            <input type="number" id="tempInput" placeholder="e.g. 100">
+            <div id="errorMsg" class="error">Please enter a valid number.</div>
+        </div>
+
+        <!-- 2. Dropdown for Input Unit -->
+        <div class="input-group">
+            <label for="fromUnit">From</label>
+            <select id="fromUnit">
+                <option value="C">Celsius (°C)</option>
+                <option value="F">Fahrenheit (°F)</option>
+                <option value="K">Kelvin (K)</option>
+            </select>
+        </div>
+
+        <!-- 3. Dropdown for Target Unit (Bonus Challenge) -->
+        <div class="input-group">
+            <label for="toUnit">Convert To</label>
+            <select id="toUnit">
+                <option value="F">Fahrenheit (°F)</option>
+                <option value="C">Celsius (°C)</option>
+                <option value="K">Kelvin (K)</option>
+            </select>
+        </div>
+
+        <!-- 4. Convert Button -->
+        <button onclick="convertTemperature()">Convert</button>
+
+        <!-- 5. Display Area -->
+        <div id="result"></div>
+    </div>
+
+    <script>
+        // JavaScript: Logic and Validation
+        function convertTemperature() {
+            // 1. Get Elements
+            const input = document.getElementById('tempInput');
+            const fromUnit = document.getElementById('fromUnit').value;
+            const toUnit = document.getElementById('toUnit').value;
+            const resultDisplay = document.getElementById('result');
+            const errorMsg = document.getElementById('errorMsg');
+
+            // 2. Validation
+            const tempValue = parseFloat(input.value);
+            
+            // Check if input is empty or not a number
+            if (isNaN(tempValue)) {
+                errorMsg.style.display = 'block';
+                resultDisplay.textContent = '';
+                return;
+            } else {
+                errorMsg.style.display = 'none';
+            }
+
+            // 3. Conversion Logic
+            let result = 0;
+
+            // First, convert everything to Celsius as a base
+            let celsius = 0;
+
+            if (fromUnit === 'C') {
+                celsius = tempValue;
+            } else if (fromUnit === 'F') {
+                celsius = (tempValue - 32) * (5/9);
+            } else if (fromUnit === 'K') {
+                celsius = tempValue - 273.15;
+            }
+
+            // Then, convert from Celsius to the target unit
+            if (toUnit === 'C') {
+                result = celsius;
+            } else if (toUnit === 'F') {
+                result = (celsius * 9/5) + 32;
+            } else if (toUnit === 'K') {
+                result = celsius + 273.15;
+            }
+
+            // 4. Display Result
+            // .toFixed(2) rounds the number to 2 decimal places
+            resultDisplay.textContent = `${tempValue}°${fromUnit} is equal to ${result.toFixed(2)}°${toUnit}`;
+        }
+    </script>
+
+</body>
+</html>

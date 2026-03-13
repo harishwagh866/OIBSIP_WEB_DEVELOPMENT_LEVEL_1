@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Indian style portfolio · Piyush Shinde</title>
+  <style>
+    /* Indian aesthetic — rich colours, traditional motifs, warmth (all English text) */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #e9d8c0;  /* warm khaki base, like handloom fabric */
+      font-family: 'Segoe UI', 'Arial', system-ui, sans-serif;
+      padding: 2rem 1.2rem;
+      background-image: radial-gradient(circle at 20% 30%, #f8e3c0 2px, transparent 2px),
+                      radial-gradient(circle at 80% 70%, #b87333 1px, transparent 2px);
+      background-size: 50px 50px;
+    }
+
+    .portfolio {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: #fffcf0;  /* cream / off-white, like fine art paper */
+      border-radius: 3rem 3rem 2rem 2rem;
+      box-shadow: 0 25px 40px -15px #5a3e2b;
+      border: 2px solid #c59b6c;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* decorative paisley / indian border (top & bottom) */
+    .portfolio::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 12px;
+      background: linear-gradient(90deg, #ff9933 0%, #ff9933 20%, 
+                                          #ffffff 20%, #ffffff 40%,
+                                          #138808 40%, #138808 60%,
+                                          #ff9933 60%, #ff9933 80%,
+                                          #ffffff 80%, #ffffff 100%);
+      background-size: 20% 100%;
+      border-radius: 3rem 3rem 0 0;
+      opacity: 0.6;
+    }
+
+    .portfolio::after {
+      content: "❁  🪯  🪯  ❁";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 1.4rem;
+      color: #b84a3a;
+      background: #e6d5b8;
+      letter-spacing: 6px;
+      padding: 0.2rem;
+      border-top: 2px dashed #c57c4a;
+      opacity: 0.7;
+    }
+
+    /* ---------- HERO / INTRO (Indian style, English only) ---------- */
+    .intro {
+      padding: 2.8rem 2rem 2.2rem 2rem;
+      text-align: center;
+      background: linear-gradient(145deg, #fef3e4, #faead7);
+      border-bottom: 4px solid #d9b382;
+      position: relative;
+    }
+
+    /* toran / mango motif */
+    .intro::after {
+      content: "🥭 🥭 🥭";
+      font-size: 2rem;
+      opacity: 0.2;
+      position: absolute;
+      bottom: 10px;
+      right: 20px;
+      transform: rotate(-5deg);
+      pointer-events: none;
+    }
+
+    .avatar {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 6px solid #e9c89e;
+      box-shadow: 0 10px 25px #c7813b80;
+      margin-bottom: 1.2rem;
+      /* adding a traditional tilak / bindi effect */
+      outline: 4px solid #b5442e40;
+      outline-offset: 2px;
+    }
+
+    .intro h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #b34e3a;  /* deep terracotta */
+      text-shadow: 2px 2px 0 #f9dbb4;
+      letter-spacing: 1px;
+      margin-bottom: 0.3rem;
+      font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
+    }
+
+    .intro h1::first-letter {
+      font-size: 3.5rem;
+      color: #c9631e;
+    }
+
+    .tagline {
+      font-size: 1.6rem;
+      color: #9e5f2b;
+      background: #ffeed9;
+      display: inline-block;
+      padding: 0.3rem 2rem;
+      border-radius: 40px;
+      border: 2px solid #e09d5e;
+      box-shadow: inset 0 -2px 0 #b26b2e;
+      margin: 0.6rem 0 1.2rem 0;
+      font-weight: 500;
+    }
+
+    .intro p {
+      max-width: 650px;
+      margin: 1rem auto 0;
+      background: #f8e5cf;
+      padding: 1rem 2rem;
+      border-radius: 80px 20px 80px 20px;
+      border: 1px solid #ca8742;
+      color: #3f2c1b;
+      font-size: 1.2rem;
+      font-style: italic;
+      box-shadow: 0 8px 0 #a97443;
+    }
+
+    /* ----- PROJECT SAMPLES (indian crafts vibe) ----- */
+    .samples {
+      padding: 3rem 2rem 2rem 2rem;
+      background: #fcf3e4;
+      position: relative;
+    }
+
+    /* block print pattern background */
+    .samples::before {
+      content: "";
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 120px;
+      height: 120px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" opacity="0.1"><path d="M20 5 L25 15 L35 15 L27 23 L30 35 L20 28 L10 35 L13 23 L5 15 L15 15 Z" fill="%23b85129"/></svg>');
+      background-size: cover;
+      pointer-events: none;
+    }
+
+    .samples h2, .contact h2 {
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: #b0452c;
+      border-left: 10px solid #f3ad61;
+      padding-left: 1.5rem;
+      margin-bottom: 2.5rem;
+      background: linear-gradient(to right, #ffeacb, transparent);
+      display: inline-block;
+      padding-right: 2rem;
+      border-radius: 0 50px 50px 0;
+    }
+
+    .project-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+
+    .project-card {
+      background: #fef5e9;
+      border-radius: 2rem 2rem 2rem 0;
+      padding: 2rem 1.8rem;
+      flex: 1 1 250px;
+      max-width: 280px;
+      border: 2px solid #d79763;
+      transition: 0.25s ease;
+      box-shadow: 8px 8px 0 #b0764a;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card:hover {
+      transform: translate(-4px, -4px);
+      box-shadow: 14px 14px 0 #a56537;
+      background: #fff8e7;
+    }
+
+    /* miniature painting style corner */
+    .project-card::after {
+      content: "🪷";
+      position: absolute;
+      bottom: 5px;
+      right: 10px;
+      font-size: 1.8rem;
+      opacity: 0.15;
+      transform: rotate(15deg);
+    }
+
+    .project-icon {
+      font-size: 3.5rem;
+      margin-bottom: 0.3rem;
+      filter: drop-shadow(2px 4px 4px #b55b2e);
+    }
+
+    .project-card h3 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #914d24;
+      border-bottom: 2px dotted #d98f4a;
+      display: inline-block;
+      margin-bottom: 0.8rem;
+    }
+
+    .skill-badge {
+      display: inline-block;
+      background: #f7c999;
+      padding: 0.3rem 1.2rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #411f0a;
+      border: 1px solid #b9521e;
+      margin: 0.2rem 0.15rem;
+      box-shadow: 0 2px 0 #ad5b2b;
+    }
+
+    /* ----- RESUME (indian textile look) ----- */
+    .resume-snapshot {
+      background: #eedec7;
+      margin: 2rem 2rem 1rem 2rem;
+      padding: 1.8rem 2.5rem;
+      border-radius: 80px 20px 80px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      border: 3px solid #c0793b;
+      border-style: groove;
+      background-image: linear-gradient(45deg, #ffe1b3 5%, #f3d1a5 95%);
+      box-shadow: inset 0 0 0 4px #ffefd1, 0 10px 15px -8px #633f1e;
+    }
+
+    .resume-snapshot span {
+      font-size: 1.4rem;
+      color: #342012;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-weight: 600;
+    }
+
+    .resume-link {
+      background: #c2592b;
+      color: #ffefd1;
+      padding: 0.9rem 2.5rem;
+      border-radius: 40px 10px 40px 10px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.2rem;
+      border: 2px solid #ffe6b0;
+      transition: 0.15s;
+      box-shadow: 0 5px 0 #7b351a;
+      letter-spacing: 0.5px;
+    }
+
+    .resume-link:hover {
+      background: #b34016;
+      box-shadow: 0 3px 0 #7b351a;
+      transform: translateY(2px);
+    }
+
+    /* ------- CONTACT (chai / bindi accents) ------- */
+    .contact {
+      padding: 2.8rem 2rem 4rem 2rem;
+      background: #faedd9;
+      border-top: 8px solid #e5b887;
+      border-style: double;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem;
+      justify-content: center;
+      margin-top: 2.5rem;
+    }
+
+    .contact-item {
+      background: #fdebd1;
+      border-radius: 60px 10px 60px 10px;
+      padding: 0.7rem 2rem 0.7rem 1.8rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 1.3rem;
+      border: 2px solid #bb672a;
+      box-shadow: 6px 6px 0 #a95929;
+      transition: 0.15s;
+    }
+
+    .contact-item:hover {
+      box-shadow: 2px 2px 0 #a95929;
+      transform: translate(4px,4px);
+      background: #ffdbb5;
+    }
+
+    .contact-item .emoji-big {
+      font-size: 2rem;
+      filter: drop-shadow(0 2px 2px #8f411c);
+    }
+
+    .contact-detail {
+      color: #4e2b13;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 2px dotted #bf743b;
+    }
+
+    .contact-detail:hover {
+      color: #a6340e;
+      border-bottom: 2px solid #b13f15;
+    }
+
+    /* demo footer with indian motif */
+    .demo-note {
+      background: #bb7850;
+      color: #fef6df;
+      text-align: center;
+      padding: 1rem;
+      font-size: 1.1rem;
+      border-top: 4px solid #e6b071;
+      border-bottom: 4px solid #7d4f27;
+      font-style: italic;
+      letter-spacing: 0.3px;
+      word-spacing: 4px;
+    }
+
+    .demo-note::before {
+      content: "🪔  ";
+      font-size: 1.4rem;
+    }
+    .demo-note::after {
+      content: "  🪔";
+      font-size: 1.4rem;
+    }
+
+    @media (max-width: 650px) {
+      .intro h1 { font-size: 2.2rem; }
+      .tagline { font-size: 1.3rem; }
+      .resume-snapshot { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="portfolio">
+    <!-- Hero with image & self introduction (Indian style, English only) -->
+    <header class="intro">
+      <!-- Profile image – traditional avatar feel, with bindi and earrings -->
+      <img 
+        class="avatar" 
+        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='45' r='32' fill='%23c27e4b' /%3E%3Ccircle cx='50' cy='45' r='28' fill='%23e0ac7c' /%3E%3C!-- bindi --%3E%3Ccircle cx='50' cy='35' r='5' fill='%23c92f2f' /%3E%3C!-- eyes --%3E%3Ccircle cx='37' cy='40' r='4' fill='%232b1e0f' /%3E%3Ccircle cx='63' cy='40' r='4' fill='%232b1e0f' /%3E%3C!-- smile --%3E%3Cpath d='M38 58 Q50 70,62 58' stroke='%23993333' stroke-width='3' fill='none' stroke-linecap='round' /%3E%3C!-- earrings --%3E%3Ccircle cx='22' cy='50' r='4' fill='%23d4af37' /%3E%3Ccircle cx='78' cy='50' r='4' fill='%23d4af37' /%3E%3C/svg%3E"
+        alt="Indian style profile avatar with bindi and earrings"
+      >
+      <h1>Pihu Shinde</h1>
+      <div class="tagline">UI Designer · Culture & Code 🪷</div>
+      <p>Namaste! I blend modern web design with traditional Indian arts. Based in Jaipur, I love creating digital experiences with a desi soul.</p>
+    </header>
+
+    <!-- Wide range of samples / skills (indian project names, English) -->
+    <section class="samples">
+      <h2>✧  featured projects  ✧</h2>
+      <div class="project-grid">
+        <!-- card 1 -->
+        <article class="project-card">
+          <div class="project-icon">🕌</div>
+          <h3>Rangoli UI</h3>
+          <p>Responsive festival microsite with vibrant colors and fluid grids</p>
+          <div>
+            <span class="skill-badge">HTML5</span>
+            <span class="skill-badge">CSS grid</span>
+            <span class="skill-badge">variables</span>
+          </div>
+        </article>
+        <!-- card 2 -->
+        <article class="project-card">
+          <div class="project-icon">🥻</div>
+          <h3>Bandhani cart</h3>
+          <p>E‑commerce concept · interactive cards, heritage color palette</p>
+          <div>
+            <span class="skill-badge">flexbox</span>
+            <span class="skill-badge">position</span>
+            <span class="skill-badge">forms</span>
+          </div>
+        </article>
+        <!-- card 3 -->
+        <article class="project-card">
+          <div class="project-icon">🪔</div>
+          <h3>Diyawali countdown</h3>
+          <p>Landing page with lantern animations & pseudo-elements</p>
+          <div>
+            <span class="skill-badge">animations</span>
+            <span class="skill-badge">pseudo</span>
+            <span class="skill-badge">transitions</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Resume area (indian style, English) -->
+    <div class="resume-snapshot">
+      <span>
+        <span style="font-size:2.2rem;">📜</span> 
+        Ananya_Kapoor_Resume.pdf · 2026
+      </span>
+      <!-- demo click (no navigation) -->
+      <a href="#" class="resume-link" onclick="return false;">📥 download resume</a>
+    </div>
+
+    <!-- Contact information (indian style, English only) -->
+    <section class="contact">
+      <h2>📞  get in touch</h2>
+      <div class="contact-links">
+        <div class="contact-item">
+          <span class="emoji-big">📧</span>
+          <a href="#" class="contact-detail" onclick="return false;">ananya.k@desiweb.demo</a>
+        </div>
+        <div class="contact-item">
+          <span class="emoji-big">📱</span>
+          <span class="contact-detail">+91 98765 43210</span>
+        </div>
+        <div class="contact-item">
+          <span class="emoji-big">🌐</span>
+          <a href="#" class="contact-detail" onclick="return false;">ananyaportfolio.in</a>
+        </div>
+        <div class="contact-item">
+          <span class="emoji-big">🤝</span>
+          <a href="#" class="contact-detail" onclick="return false;">linkedin.com/in/ananya-kapoor</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- demo hint with indian touch -->
+    <div class="demo-note">
+      just a demo · all links are static · crafted with ❤️ using only HTML & CSS
+    </div>
+  </div>
+</body>
+</html>

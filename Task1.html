@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumina • modern landing page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #ffffff;
+            color: #1e293b;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* smooth typography */
+        h1, h2, h3 {
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        /* container utility */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* header – refined sticky with blur */
+        header {
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            padding: 0.8rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2.2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #1e293b;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: #2563eb;
+        }
+
+        .nav-cta {
+            background: #1e293b;
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 500;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .nav-cta:hover {
+            background: #2563eb;
+            color: white;
+        }
+
+        /* hero – full, elegant gradient overlay */
+        .hero {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(124, 58, 237, 0.1)), 
+                        url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center 30%;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(255,255,255,0.92) 15%, rgba(255,255,255,0.4) 70%);
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 5;
+            width: 100%;
+        }
+
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 1.2rem;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #334155;
+            margin-bottom: 2.2rem;
+            max-width: 580px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.85rem 2.2rem;
+            border-radius: 60px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: #2563eb;
+            color: white;
+            box-shadow: 0 12px 20px -10px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 20px 25px -8px #1e3a8a66;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1.5px solid #cbd5e1;
+            color: #1e293b;
+        }
+
+        .btn-outline:hover {
+            border-color: #2563eb;
+            background-color: #f8fafc;
+        }
+
+        /* features section – spacious, clean cards */
+        .features {
+            padding: 6rem 0;
+            background-color: #fafbfc;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            color: #0f172a;
+            margin-bottom: 1rem;
+        }
+
+        .section-subhead {
+            text-align: center;
+            color: #475569;
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 4rem auto;
+        }
+
+        .feature-grid {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .feature-card {
+            flex: 1 1 280px;
+            background: white;
+            padding: 2.5rem 1.8rem;
+            border-radius: 28px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.05);
+            transition: transform 0.25s, box-shadow 0.3s;
+            border: 1px solid #f0f2f5;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 28px 40px -16px rgba(0,60,130,0.12);
+            border-color: #d9e2ef;
+        }
+
+        .icon-placeholder {
+            width: 56px;
+            height: 56px;
+            background: #e9eff9;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.8rem;
+            color: #2563eb;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .feature-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 0.8rem;
+            color: #0f172a;
+        }
+
+        .feature-card p {
+            color: #475569;
+            font-size: 1rem;
+        }
+
+        /* about section – premium split layout */
+        .about {
+            padding: 6rem 0;
+            background: white;
+        }
+
+        .about-grid {
+            display: flex;
+            align-items: center;
+            gap: 5rem;
+            flex-wrap: wrap;
+        }
+
+        .about-text {
+            flex: 1 1 380px;
+        }
+
+        .about-text h2 {
+            font-size: 2.8rem;
+            color: #0f172a;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            color: #475569;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            border-left: 5px solid #2563eb;
+            padding-left: 2rem;
+        }
+
+        .about-highlight {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .highlight-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .highlight-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2563eb;
+        }
+
+        .about-image {
+            flex: 1 1 380px;
+            background: linear-gradient(145deg, #e2e8f0, #f1f5f9);
+            border-radius: 36px;
+            height: 420px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #475569;
+            font-size: 1.5rem;
+            font-weight: 400;
+            box-shadow: 0 30px 40px -20px rgba(0,0,0,0.15);
+            border: 1px solid #ffffff50;
+            background-image: url('https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* CTA banner */
+        .cta-banner {
+            background: linear-gradient(115deg, #1e293b, #0f172a);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+            border-radius: 40px;
+            margin: 0 2rem 5rem 2rem;
+            box-shadow: 0 30px 35px -12px #0f172a80;
+        }
+
+        .cta-banner h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .cta-banner p {
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+            opacity: 0.85;
+        }
+
+        .btn-white {
+            background: white;
+            color: #0f172a;
+            box-shadow: 0 12px 16px -5px #00000040;
+        }
+
+        .btn-white:hover {
+            background: #f1f5f9;
+            transform: scale(1.02);
+        }
+
+        /* footer – minimal, crisp */
+        footer {
+            background-color: #ffffff;
+            padding: 2.5rem 2rem;
+            border-top: 1px solid #e9eef2;
+            color: #64748b;
+        }
+
+        .footer-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .footer-links a {
+            color: #475569;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer-links a:hover {
+            color: #2563eb;
+        }
+
+        /* responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 0.8rem 1.5rem;
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+
+            nav ul {
+                gap: 1.2rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .about-grid {
+                flex-direction: column-reverse;
+                gap: 2.5rem;
+            }
+
+            .cta-banner {
+                margin: 0 1rem 3rem 1rem;
+                padding: 3rem 1.5rem;
+            }
+
+            .cta-banner h2 {
+                font-size: 2rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER (elegant sticky) -->
+    <header>
+        <div class="logo">lumina</div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#" class="nav-cta">Sign up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO – fresh, light & balanced -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Craft your digital presence with clarity</h1>
+                <p>Modern, responsive, and built for conversion. Lumina helps you stand out without the complexity.</p>
+                <div class="btn-group">
+                    <a href="#" class="btn btn-primary">Start building →</a>
+                    <a href="#" class="btn btn-outline">Watch demo</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES (refined cards) -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2>Designed for performance</h2>
+            <div class="section-subhead">Everything you need to launch a professional site — no fluff.</div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="icon-placeholder">⚡</div>
+                    <h3>Fast & fluid</h3>
+                    <p>Pure CSS and modern flex layouts make this page lightning fast and buttery smooth on any screen.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-placeholder">📱</div>
+                    <h3>Responsive core</h3>
+                    <p>From mobile to 4K, every component scales beautifully. Tested on all viewports.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-placeholder">🎨</div>
+                    <h3>Timeless aesthetic</h3>
+                    <p>Soft gradients, clean typography, and meaningful whitespace create a premium feel.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-placeholder">🔧</div>
+                    <h3>Easy to customize</h3>
+                    <p>Well-commented, structured CSS — change colors, spacing, or fonts in minutes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION (balanced split) -->
+    <section class="about" id="about">
+        <div class="container about-grid">
+            <div class="about-text">
+                <h2>Where purpose meets polish</h2>
+                <p>This landing page isn’t just a template — it’s a foundation. We’ve combined UX best practices with a clean design system so you can focus on your message.</p>
+                <div class="about-highlight">
+                    <div class="highlight-item">
+                        <span class="highlight-number">98%</span>
+                        <span> Lighthouse score</span>
+                    </div>
+                    <div class="highlight-item">
+                        <span class="highlight-number">3x</span>
+                        <span> faster load</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image" title="Workspace with laptop and notebook">
+                <!-- image via css background -->
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION (dark elevated card) -->
+    <div class="container" id="contact">
+        <div class="cta-banner">
+            <h2>Ready to elevate your brand?</h2>
+            <p>Join thousands of creators who use Lumina to launch beautiful, high‑performance pages.</p>
+            <a href="#" class="btn btn-white">Get started — it's free</a>
+        </div>
+    </div>
+
+    <!-- FOOTER (clean & helpful) -->
+    <footer>
+        <div class="footer-content">
+            <span>© 2025 Lumina. All rights reserved.</span>
+            <div class="footer-links">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Twitter</a>
+                <a href="#">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
